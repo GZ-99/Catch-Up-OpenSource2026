@@ -1,12 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NewsPage } from './news/presentation/news-page/news-page';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  imports: [NewsPage],
+  template: '<app-news-page />',
 })
-export class App {
-  protected readonly title = signal('catch-up');
-}
+export class App {}

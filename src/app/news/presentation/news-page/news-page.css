@@ -1,0 +1,20 @@
+:host { display: block; }
+.page { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; font-family: Arial, sans-serif; }
+.hero { margin-bottom: 24px; }
+.hero h1 { margin: 4px 0 8px; font-size: 2.4rem; }
+.eyebrow, .source { font-weight: 700; }
+.search { display: flex; gap: 12px; margin-bottom: 24px; }
+.search input { flex: 1; min-width: 0; padding: 12px 14px; font-size: 1rem; border: 1px solid #bbb; border-radius: 8px; }
+.search button { padding: 12px 22px; border: 0; border-radius: 8px; cursor: pointer; font-weight: 700; }
+.status { padding: 12px 0; }
+.error { font-weight: 700; }
+.articles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.card { overflow: hidden; border: 1px solid #ddd; border-radius: 12px; background: #fff; }
+.card img { width: 100%; height: 190px; object-fit: cover; display: block; }
+.content { padding: 18px; }
+.content h2 { margin: 6px 0 10px; font-size: 1.2rem; }
+.content p { line-height: 1.5; }
+.content small { display: block; margin: 14px 0; }
+.content a { font-weight: 700; }
+@media (max-width: 900px) { .articles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .articles { grid-template-columns: 1fr; } .search { flex-direction: column; } }

@@ -1,0 +1,54 @@
+<section class="page">
+  <header class="hero">
+    <p class="eyebrow">Angular 22 · DDD sencillo</p>
+    <h1>NewsAPI</h1>
+    <p>Busca noticias por palabra clave.</p>
+  </header>
+
+  <div class="search">
+    <input
+      #queryInput
+      type="text"
+      [value]="query()"
+      (input)="query.set(queryInput.value)"
+      (keyup.enter)="search()"
+      placeholder="Ejemplo: tesla">
+
+    <button type="button" (click)="search()">Buscar</button>
+  </div>
+
+  @if (facade.loading()) {
+    <p class="status">Cargando noticias...</p>
+  }
+
+  @if (facade.error()) {
+    <p class="status error">{{ facade.error() }}</p>
+  }
+
+  @if (!facade.loading() && !facade.error() && facade.articles().length === 0) {
+    <p class="status">No se encontraron noticias.</p>
+  }
+
+  <div class="articles">
+    @for (article of facade.articles(); track article.url) {
+      <article class="card">
+        @if (article.urlToImage) {
+          <img [src]="article.urlToImage" [alt]="article.title">
+        }
+
+        <div class="content">
+          <p class="source">{{ article.source }}</p>
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.description }}</p>
+
+          <small>
+            {{ article.publishedAt | date:'dd/MM/yyyy HH:mm' }}
+            @if (article.author) { · {{ article.author }} }
+          </small>
+
+          <a [href]="article.url" target="_blank" rel="noopener noreferrer">Leer noticia</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

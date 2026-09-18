@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { NewsFacade } from '../../application/news.facade';
 
@@ -6,6 +6,7 @@ import { NewsFacade } from '../../application/news.facade';
   selector: 'app-news-page',
   imports: [DatePipe],
   templateUrl: './news-page.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './news-page.css',
 })
 export class NewsPage implements OnInit {

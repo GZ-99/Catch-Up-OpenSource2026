@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { NewsPage } from './news/presentation/news-page/news-page';
 
 @Component({

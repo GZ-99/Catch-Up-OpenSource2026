@@ -10,25 +10,24 @@ export class NewsFacade {
   private readonly newsApi = inject(NewsApi);
   private readonly articlesState = signal<Article[]>([]);
   private readonly loadingState = signal(false);
-  private readonly errorState = signal<string | null>('');
+  private readonly errorState = signal('');
 
-  readonly articles = computed(() => this.articlesState);
-  readonly loading = computed(() => this.loadingState);
-  readonly error = computed(() => this.errorState);
+  readonly articles = computed(() => this.articlesState());
+  readonly loading = computed(() => this.loadingState());
+  readonly error = computed(() => this.errorState());
 
   search(query: string): void {
     this.loadingState.set(true);
-    this.errorState.set(null);
+    this.errorState.set('');
+
     this.newsApi.getArticles(query)
       .pipe(finalize(() => this.loadingState.set(false)))
       .subscribe({
-      next: (articles) => {
-        this.articlesState.set(articles);
-      },
-      error: (error) => {
-        console.error("Error newsAPI", error);
-        this.errorState.set(error.message || 'An error occurred while fetching articles.');
-      }
-    });
+        next: articles => this.articlesState.set(articles),
+        error: error => {
+          console.error('Error NewsAPI:', error);
+          this.errorState.set('No se pudieron cargar las noticias.');
+        }
+      });
   }
 }

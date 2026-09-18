@@ -12,11 +12,11 @@ import {EverythingResponse} from './everything-response';
 export class NewsApi {
   private readonly http = inject(HttpClient)
   private readonly assembler = inject(ArticleAssembler);
-  private readonly endpoint: string = `${environment.newsApiBaseUrl}${environment.newsApiEverythingEndpoint}`;
+  private readonly endpoint = `${environment.newsApiBaseUrl}/everything`;
 
   getArticles(query:string): Observable<Article[]> {
-    return this.http.get<EverythingResponse>(this.endpoint, {params:
-        {
+    return this.http.get<EverythingResponse>(this.endpoint, {
+      params: {
           q: query,
           sortBy: 'publishedAt',
           apiKey: environment.newsApiKey
